@@ -1,65 +1,50 @@
-# markdown-visualizer README
+# Extension VS Code — Prévisualisation Markdown enrichie et export PDF
 
-This is the README for your extension "markdown-visualizer". After writing up a brief description, we recommend including the following sections.
+Extension VS Code qui enrichit la prévisualisation Markdown : diagrammes Mermaid, formules KaTeX, mise en page en colonnes et blocs colorés, templates, et export PDF fidèle au rendu.
 
-## Features
+Projet d'équipe réalisé en L3 Informatique à l'Université de Montpellier (2025–2026).
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+> Le pilotage de la présentation par gestes de la main (MediaPipe) est dans un dépôt séparé : [lien vers le dépôt gesture-control](https://github.com/laithRahil/NOM-DU-DEPOT)
 
-For example if there is an image subfolder under your extension project workspace:
+![Démo](docs/demo.gif)
 
-\!\[feature X\]\(images/feature-x.png\)
+## Fonctionnalités
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+- **Mermaid** : les blocs ` ```mermaid ` sont détectés et rendus en SVG directement dans la prévisualisation.
+- **KaTeX** : rendu des formules mathématiques.
+- **Colonnes et blocs** : syntaxe `:::` pour structurer la mise en page.
+- **Templates** : création, modification et suppression de modèles de documents (CRUD).
+- **Prévisualisation en direct** : mise à jour à la frappe (`onType`) ou à l'enregistrement (`onSave`), avec scroll synchronisé entre l'éditeur et l'aperçu.
+- **Export PDF** : génération d'un PDF identique au rendu (CSS, Mermaid, KaTeX compris).
 
-## Requirements
+## Syntaxe des blocs
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+```markdown
+::: COL {l30, c20, r50}     → trois colonnes : 30 % gauche, 20 % centre, 50 % droite
+::: ITEM Titre              → cellule dans la colonne courante, avec son titre
+::: #de5d5d Titre           → bloc coloré (titre, bordure et fond léger)
+```
 
-## Extension Settings
+## Export PDF
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Le fichier Markdown est converti en HTML, puis Puppeteer lance un Chrome invisible (headless) qui fait le rendu complet et génère le PDF. Les fichiers temporaires sont ensuite supprimés.
 
-For example:
+Pour trouver un navigateur, l'extension cherche d'abord Chrome sur le système, puis dans son cache, et ne télécharge un navigateur headless qu'en dernier recours.
 
-This extension contributes the following settings:
+## Installation
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+```bash
+git clone https://github.com/laithRahil/projetExtensionVSC.git
+cd projetExtensionVSC
+npm install
+```
 
-## Known Issues
+Ouvrir le dossier dans VS Code et appuyer sur `F5` pour lancer l'extension dans une fenêtre de développement.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+## Technologies
 
-## Release Notes
+TypeScript, API VS Code, Mermaid, KaTeX, Puppeteer
 
-Users appreciate release notes as you update your extension.
+## Équipe
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Laith Rahil · Marc Nasr · Maxime Roche · Gautier Camba
